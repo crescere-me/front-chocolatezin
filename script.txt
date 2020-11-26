@@ -1,0 +1,20 @@
+serve
+
+-- npm run serve
+
+
+serve = ok
+preserve = ok 
+postserve = ok
+
+
+script = build
+
+prescript = pre + script = pre + build = prebuild
+postscript = post + script = post + build = postbuild
+
+fila de execução:
+
+- preserve
+- serve
+- postserve
