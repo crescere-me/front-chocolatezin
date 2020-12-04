@@ -1,11 +1,24 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import GlobalStyle from '../../styles/global';
 import { Container } from '../../components/container';
 import chocolateImg from '../../assets/images/chocolate.svg';
 import { LoginForm } from './style';
 import api from '../../services/api';
+import {
+  localStorageSetItem,
+  localStorageGetItem,
+} from '../../helper/localStorage';
 
 function Login() {
+  const history = useHistory();
+
+  const token = localStorageGetItem();
+
+  if (token) {
+    history.push('/');
+  }
+
   const [infos, setInfos] = useState({
     email: '',
     password: '',
@@ -16,11 +29,13 @@ function Login() {
 
     const response = await api.post('/login', infos);
 
-    if (response.status !== 200) {
-      return alert('Houve um problema com as credenciais');
+    if (response.status !== 201) {
+      return alert('Usuário inválido');
     }
 
-    return alert('Usuário autenticado');
+    localStorageSetItem(response.data.token);
+
+    return history.push('/');
   };
 
   const handleInputChange = (e) => {

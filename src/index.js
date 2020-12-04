@@ -11,10 +11,10 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Switch>
-        <Route path="/" exact="true" component={App} />
-        <Route path="/chocolate" exact="true" component={Chocolate} />
-        <Route path="/login" exact="true" component={Login} />
-        <Route path="/user" exact="true" component={User} />
+        <Route path="/" exact component={App} />
+        <Route path="/chocolate" exact component={Chocolate} />
+        <Route path="/login" exact component={Login} />
+        <Route path="/user" exact component={User} />
         <Route path="*" component={NotFound} />
       </Switch>
     </BrowserRouter>
